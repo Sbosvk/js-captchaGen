@@ -9,6 +9,8 @@ let genCaptcha = () => {
     gradient.addColorStop("0", "green");
     gradient.addColorStop("1.0", "#06c");
 
+    canvas.style.backgroundColor = "lightskyblue";
+
     ctx.clearRect("2px", "2px", width, height);
 
     ctx.strokeStyle = gradient;
@@ -36,5 +38,5 @@ let genCaptcha = () => {
         ctx.lineTo(X, Y);
         ctx.stroke();
     }
-
+    const base64 = canvas.toDataURL();
 }
