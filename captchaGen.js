@@ -34,7 +34,6 @@ let genCaptcha = () => {
     cI = Math.round(cI);
     gradient.addColorStop("0", colors[cI]);
     gradient.addColorStop("1", "blue");
-    canvas.style.backgroundColor = "lightskyblue";
     ctx.clearRect("2px", "2px", width, height);
     ctx.strokeStyle = "black";
     ctx.font = "bold 54px serif";
@@ -67,9 +66,9 @@ let genCaptcha = () => {
         ctx.lineTo(X, Y);
         ctx.stroke();
     }
-
     //PNG Data
-    const base64 = canvas.toDataURL();
+        let base64 = canvas.toDataURL();
+        return base64;
 }
 //Makespots
 let makeSpots = (ctx, X, Y, size, color) => {
@@ -86,3 +85,5 @@ let makeSpots = (ctx, X, Y, size, color) => {
     ctx.fillStyle = color;
     ctx.fill();
 }
+
+

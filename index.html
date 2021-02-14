@@ -6,14 +6,16 @@
     <title>Captcha Generator</title>
 </head>
 <body>
-    <canvas class="captcha">
+    <canvas class="captcha" style="display:none;">
     </canvas>
-    <script src="../plugins/jquery/jquery-3.5.1.min.js"></script>
+
+    <img src="" alt="DGB Captcha" id="captcha">
     <script src="captchaGen.js"></script>
     <script>
-        $(document).ready(() => {
-            genCaptcha();
-        })
+    document.addEventListener("DOMContentLoaded", (e) => {
+        let img = document.querySelector("img#captcha");
+        img.src = genCaptcha();
+});
     </script>
 </body>
 </html>
