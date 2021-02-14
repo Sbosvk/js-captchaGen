@@ -22,7 +22,7 @@ let genCaptcha = val => {
         ctx.beginPath();
         ctx.moveTo(X, Y);
 
-        if (i > 62 || i < 6 || i == 27){
+        if (i > 62 || i < 6){
             ctx.strokeStyle = "orange";
         } else if (i % 2 == 0){
             ctx.strokeStyle = "magenta";
