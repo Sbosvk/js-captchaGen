@@ -1,5 +1,6 @@
-let genCaptcha = val => {
-    let canvas = document.querySelector('#captcha');
+let genCaptcha = () => {
+    let canvas = document.querySelector('.captcha');
+    let val = Math.floor(1000 + Math.random() * 9000);
     let width = canvas.width;
     let height = canvas.height;
     let ctx = canvas.getContext("2d");
