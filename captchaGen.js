@@ -66,6 +66,7 @@ let genCaptcha = () => {
         ctx.strokeText(sNumber.charAt(i), numX + 33, numY);
         ctx.fillText(sNumber.charAt(i), numX + 30, numY);
     }
+    //PNG Data
     const base64 = canvas.toDataURL();
 }
 //Makespots
