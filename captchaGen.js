@@ -1,22 +1,22 @@
+let canvas = document.querySelector('.captcha');
+let val = Math.floor(1000 + Math.random() * 9000);
+let width = canvas.width;
+let height = canvas.height;
+let ctx = canvas.getContext("2d");
 
-
-let genCaptcha = () => {
-    let canvas = document.querySelector('.captcha');
-    let val = Math.floor(1000 + Math.random() * 9000);
-    let width = canvas.width;
-    let height = canvas.height;
-    let ctx = canvas.getContext("2d");
-
-    let numSpots = 128;
-    let maxSize = 18;
-    let minSize = 3;
-    let colors = ["aqua",  "black", "blue",  "fuchsia",
+let numSpots = 128;
+let maxSize = 18;
+let minSize = 3;
+let colors = ["aqua",  "black", "blue",  "fuchsia",
     "green", "cyan",  "lime",  "maroon",
     "navy",  "olive", "purple","red",
     "silver","teal",  "yellow","azure",
     "gold",  "bisque","pink",  "orange"];
 
-    let numColors = colors.length;
+let numColors = colors.length;
+
+let genCaptcha = () => {
+    //Spots
     for (let n = 0; n < numSpots; n++){
         let X = Math.random()*width;
         let Y = Math.random()*height;
@@ -27,20 +27,7 @@ let genCaptcha = () => {
 
         makeSpots(ctx, X, Y, size, color);
     }
-
-    let gradient = ctx.createLinearGradient(0, height, 0, 0);
-    let cI = Math.random()*(numColors-1);
-    cI = Math.round(cI);
-    gradient.addColorStop("0", colors[cI]);
-    gradient.addColorStop("1", "blue");
-    canvas.style.backgroundColor = "lightskyblue";
-    ctx.clearRect("2px", "2px", width, height);
-    ctx.strokeStyle = "black";
-    ctx.font = "bold 48px serif";
-    ctx.strokeText(val, 100, 100);
-    ctx.fillStyle = gradient;
-    ctx.fillText(val, 100, 100);
-
+    //Lines
     let X = 0, Y = 0;
     let i;
     for (i = 0; i < numColors; i++){
@@ -55,14 +42,38 @@ let genCaptcha = () => {
         ctx.lineTo(X, Y);
         ctx.stroke();
     }
+
+    //Numbers
+    let gradient = ctx.createLinearGradient(0, height, 0, 0);
+    let cI = Math.random()*(numColors-1);
+    cI = Math.round(cI);
+    gradient.addColorStop("0", colors[cI]);
+    gradient.addColorStop("1", "blue");
+    canvas.style.backgroundColor = "lightskyblue";
+    ctx.clearRect("2px", "2px", width, height);
+    ctx.strokeStyle = "black";
+    ctx.font = "bold 54px serif";
+
+    let numX = 50, numY = 100;
+    let sNumber = val.toString();
+    for (let i = 0; i <= 4; i++){
+        numX += 30;
+        numY = Math.floor(Math.random() * 75 + 50);
+        let cI = Math.random()*(numColors-1);
+        cI = Math.round(cI);
+        let color = colors[cI];
+        ctx.fillStyle = color;
+        ctx.strokeText(sNumber.charAt(i), numX + 33, numY);
+        ctx.fillText(sNumber.charAt(i), numX + 30, numY);
+    }
     const base64 = canvas.toDataURL();
 }
-
+//Makespots
 let makeSpots = (ctx, X, Y, size, color) => {
-    ctx.shadowColor = "gray";
+    ctx.shadowColor = "#222";
     ctx.shadowOffsetX = 1;
     ctx.shadowOffsetY = 1;
-    ctx.shadowBlur = 5;
+    ctx.shadowBlur = 7;
 
     let startAngle        = (Math.PI/180)*0;
     let endAngle          = (Math.PI/180)*360;
