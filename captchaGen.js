@@ -48,8 +48,8 @@ let genCaptcha = () => {
         cI = Math.round(cI);
         let color = colors[cI];
         ctx.fillStyle = color;
-        ctx.strokeText(sNumber.charAt(i), numX + 33, numY);
         ctx.fillText(sNumber.charAt(i), numX + 30, numY);
+        ctx.strokeText(sNumber.charAt(i), numX + 33, numY);
     }
 
     //Lines
