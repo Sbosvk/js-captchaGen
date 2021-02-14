@@ -27,21 +27,6 @@ let genCaptcha = () => {
 
         makeSpots(ctx, X, Y, size, color);
     }
-    //Lines
-    let X = 0, Y = 0;
-    let i;
-    for (i = 0; i < numColors; i++){
-        ctx.beginPath();
-        ctx.moveTo(X, Y);
-        X = Math.floor(Math.random() * width);
-        Y = Math.floor(Math.random() * height);
-        let colorIndex = Math.random()*(numColors-1);
-        colorIndex = Math.round(colorIndex);
-        let color = colors[colorIndex];
-        ctx.strokeStyle = color;
-        ctx.lineTo(X, Y);
-        ctx.stroke();
-    }
 
     //Numbers
     let gradient = ctx.createLinearGradient(0, height, 0, 0);
@@ -66,6 +51,23 @@ let genCaptcha = () => {
         ctx.strokeText(sNumber.charAt(i), numX + 33, numY);
         ctx.fillText(sNumber.charAt(i), numX + 30, numY);
     }
+
+    //Lines
+    let X = 0, Y = 0;
+    let i;
+    for (i = 0; i < numColors; i++){
+        ctx.beginPath();
+        ctx.moveTo(X, Y);
+        X = Math.floor(Math.random() * width);
+        Y = Math.floor(Math.random() * height);
+        let colorIndex = Math.random()*(numColors-1);
+        colorIndex = Math.round(colorIndex);
+        let color = colors[colorIndex];
+        ctx.strokeStyle = color;
+        ctx.lineTo(X, Y);
+        ctx.stroke();
+    }
+
     //PNG Data
     const base64 = canvas.toDataURL();
 }
